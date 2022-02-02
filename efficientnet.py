@@ -372,17 +372,6 @@ def EfficientNet(width_coefficient,
                                       require_flatten=include_top,
                                       weights=weights)
 
-    if input_tensor is None:
-        img_input = layers.Input(shape=input_shape)
-    else:
-        if backend.backend() == 'tensorflow':
-            from tensorflow.python.keras.backend import is_keras_tensor
-        else:
-            is_keras_tensor = backend.is_keras_tensor
-        if not is_keras_tensor(input_tensor):
-            img_input = layers.Input(tensor=input_tensor, shape=input_shape)
-        else:
-            img_input = input_tensor
 
     bn_axis = 3 if backend.image_data_format() == 'channels_last' else 1
     activation = get_swish(**kwargs)
