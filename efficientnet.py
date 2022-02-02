@@ -377,7 +377,7 @@ def EfficientNet(width_coefficient,
     activation = get_swish(**kwargs)
 
     # Build stem
-    x = img_input
+    x = input_tensor
     x = layers.Conv2D(round_filters(32, width_coefficient, depth_divisor), 3,
                       strides=(2, 2),
                       padding='same',
